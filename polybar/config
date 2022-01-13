@@ -1,0 +1,227 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;==========================================================
+
+[bar/example]
+monitor = eDP-1
+width = 99.7%
+height = 32
+offset-x = 6
+offset-y = 10
+radius = 1
+fixed-center = true
+enable-ipc = true
+
+background = #004C566A
+foreground = #ffffffff
+
+;line-size = 3
+;line-color = #f00
+
+border-size = 0
+border-color = #eceff4
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+pseudo-transparency = false
+
+;----------------------------------------------------------
+;            F O N T S
+;----------------------------------------------------------
+
+font-1 = pango:style=bold:pixelsize=16;1
+;font-0 = Saucecode Pro Nerd Font:style=semibold;pixelsize=20;1
+;font-0 = Montserrat:style=Light:size=16;1
+
+;----------------------------------------------------------
+;            M O D U L E S
+;----------------------------------------------------------
+
+modules-left = i3
+modules-center = date
+modules-right = battery
+
+tray-position = none
+tray-padding = 1
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/second]
+monitor = HDMI-1-2
+width = 99.7%
+height = 32
+offset-x = 6
+offset-y = 10
+radius = 1
+fixed-center = true
+enable-ipc = true
+
+background = #004C566A
+foreground = #eceff4
+
+;line-size = 3
+;line-color = #f00
+
+border-size = 0
+border-color = #eceff4
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;----------------------------------------------------------
+;            F O N T S
+;----------------------------------------------------------
+
+;font-0 = "NotoSansMono Light Nerd Font Complete":pixelsize=16;1
+;font-0 = Saucecode Pro Nerd Font:style=semibold;pixelsize=20;1
+;font-0 = Montserrat:style=Light:size=16;1
+
+;----------------------------------------------------------
+;            M O D U L E S
+;----------------------------------------------------------
+modules-left  = i3
+modules-center = date
+modules-right = battery
+
+tray-position = none
+tray-padding = 1
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+index-sort = true
+enable-click = true
+fuzzy-match = true
+background = #ffffff
+foreground = #f6d32d
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #484878
+
+label-focused = %index%
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-underline = #fba922
+label-focused-padding = 4
+
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #f7ff00
+
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = #ffb52a
+
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+[module/date]
+type = internal/date
+interval = 1
+
+;date-alt = " %Y-%m-%d"
+date-alt = " %m-%d"
+
+time = %A, %d %B | %H:%M
+time-alt = %H:%M
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+label = %date% %time%
+label-foreground = #f6d32d
+label-background = #000000
+
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT1
+adapter = ADP1
+poll-interval = 5
+label-foreground = #f6d32d
+label-font  = 1
+label-charging = %{T3}🤧%{T-} %percentage%%
+label-discharging = Discharging %percentage%%
+
+[settings]
+
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+font-1 = "Noto Color Emoji:pixelsize=16:style=Regular:scale=10;2"
+
+
