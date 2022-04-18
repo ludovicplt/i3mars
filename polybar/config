@@ -12,28 +12,33 @@
 
 [bar/example]
 monitor = eDP-1
-width = 99.7%
+width = 100%
 height = 32
 offset-x = 6
 offset-y = 10
-radius = 1
+radius = 5
 fixed-center = true
 enable-ipc = true
 
-background = #004C566A
+background = #FF101010
+background-alt = #004C566A
 foreground = #ffffffff
+foreground-alt = #ffffffff
+separator = |
 
+separator-foreground = #ffb52a
 ;line-size = 3
 ;line-color = #f00
 
-border-size = 0
-border-color = #eceff4
+border-size = 1
+border-color = #151515
 
-padding-left = 0
-padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 0
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
 
 pseudo-transparency = false
 
@@ -49,9 +54,10 @@ font-1 = pango:style=bold:pixelsize=16;1
 ;            M O D U L E S
 ;----------------------------------------------------------
 
-modules-left = i3
+modules-left = text i3
 modules-center = date
-modules-right = battery
+modules-right = xkeyboard alsa battery
+modules-separator = |
 
 tray-position = none
 tray-padding = 1
@@ -72,17 +78,21 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 [bar/second]
-monitor = HDMI-1-2
-width = 99.7%
+monitor = HDMI-1-0
+width = 100%
 height = 32
 offset-x = 6
 offset-y = 10
-radius = 1
+radius = 5
 fixed-center = true
 enable-ipc = true
 
-background = #004C566A
-foreground = #eceff4
+background = #FF101010
+background-alt = #004C566A
+foreground = #ffffffff
+foreground-alt = #ffffffff
+separator = |
+separator-foreground = #ffb52a
 
 ;line-size = 3
 ;line-color = #f00
@@ -93,8 +103,8 @@ border-color = #eceff4
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 0
+module-margin-left = 1
+module-margin-right = 1
 
 ;----------------------------------------------------------
 ;            F O N T S
@@ -107,9 +117,9 @@ module-margin-right = 0
 ;----------------------------------------------------------
 ;            M O D U L E S
 ;----------------------------------------------------------
-modules-left  = i3
+modules-left  = text i3
 modules-center = date
-modules-right = battery
+modules-right = xkeyboard alsa battery
 
 tray-position = none
 tray-padding = 1
@@ -130,10 +140,33 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 
+[module/text]
+type = custom/text
+
+content = λ
+
+content-width = 5
+
+content-foreground = #ffb52a
+
+content-padding = 4
+
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
 
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+blacklist-0 = scroll lock
+
+format = %{A1:setxkbmap fr &:}<label-layout> <label-indicator>%{A}
+format-spacing = 0
+
+label-layout = %layout%
+label-layout-padding = 2
 
 [module/i3]
 type = internal/i3
@@ -194,10 +227,14 @@ time = %A, %d %B | %H:%M
 time-alt = %H:%M
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = #FF101010
 label = %date% %time%
 label-foreground = #f6d32d
-label-background = #000000
+label-background = #FF101010
+border-color = #0000255
+border-size = 2
+
+
 
 [module/battery]
 type = internal/battery
@@ -207,8 +244,45 @@ adapter = ADP1
 poll-interval = 5
 label-foreground = #f6d32d
 label-font  = 1
-label-charging = %{T3}🤧%{T-} %percentage%%
+label-charging = Charging %percentage%%
 label-discharging = Discharging %percentage%%
+border-color = #151515
+border-size = 1
+
+[module/alsa]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+
+use-ui-max = true
+
+interval = 5
+
+format-volume = vol: <label-volume> <bar-volume>
+
+label-muted = vol: muted
+
+label-muted-foreground = #66
+
+bar-volume-format = %fill%%indicator%%empty%
+bar-volume-width = 10
+
+bar-volume-gradient = false
+bar-volume-foreground-0 = #00ff00
+bar-volume-foreground-1 = #ff9900
+bar-volume-foreground-2 = #ff0000
+
+bar-volume-fill = █
+bar-volume-indicator = █
+bar-volume-empty = █
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
 
 [settings]
 
