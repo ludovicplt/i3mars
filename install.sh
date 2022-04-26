@@ -15,4 +15,3 @@ cp -r picom ~/.config/
 cp -r i3 ~/.config/
 git clone "git@github.com:Heliferepo/suckless.git"
 cd suckless
-install.sh
